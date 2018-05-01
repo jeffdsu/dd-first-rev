@@ -14,6 +14,12 @@ var isProduction = process.env.NODE_ENV === 'production';
 // Create global app object
 var app = express();
 
+require('./models/User');
+require('./models/Article');
+require('./models/Comment');
+require('./config/passport');
+
+
 app.use(cors());
 
 // Normal express config defaults
@@ -37,10 +43,6 @@ if(isProduction){
   mongoose.set('debug', true);
 }
 
-require('./models/User');
-require('./models/Article');
-require('./models/Comment');
-require('./config/passport');
 
 app.use(require('./routes'));
 
